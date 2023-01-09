@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>631242150485-hph7husreqpadcbhk4i8rvjs60eoprfq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.631242150485-hph7husreqpadcbhk4i8rvjs60eoprfq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBPzXigHmBS-pLBDME5isoA1dqQeB8na4M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>631242150485</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.codigorenzo.proyFinalRenzo</string>
+	<key>PROJECT_ID</key>
+	<string>proy-final-renzo-un4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>proy-final-renzo-un4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:631242150485:ios:08aaa4414f89fa9eecfadc</string>
+</dict>
+</plist>

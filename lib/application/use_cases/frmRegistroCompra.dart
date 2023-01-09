@@ -67,7 +67,7 @@ class _FrmRegistroCompraState extends State<FrmRegistroCompra> {
                           });
                         },
                       ),
-                      Text("Logrado"),
+                      Text("Logrados"),
                     ],
                   ),
                 ],

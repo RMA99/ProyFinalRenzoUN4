@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "631242150485",
+    "project_id": "proy-final-renzo-un4",
+    "storage_bucket": "proy-final-renzo-un4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631242150485:android:05bb33adf30c9ae2ecfadc",
+        "android_client_info": {
+          "package_name": "com.codigorenzo.proy_final_renzo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631242150485-dmu6klpn21aggemm13ccf69a3unhrhs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz-P_hxyxBtNG6f3c-xSLiTp47-8iDOgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631242150485-dmu6klpn21aggemm13ccf69a3unhrhs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
