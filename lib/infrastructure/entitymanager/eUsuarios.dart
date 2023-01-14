@@ -9,11 +9,15 @@ class eUsuarios {
     return cu.insert_user(usuarios("", cod_tipo_usuario, logeo, clave));
   }
 
-  Future<bool> isUserE(String logeo, String clave) {
+  Future<String> isUserE(String logeo, String clave) {
     return cu.isUser(usuarios("", "", logeo, clave));
   }
 
   Future<String> getcodeE(String usuario) {
     return cu.getcode(usuario);
+  }
+
+  Future<usuarios> getUsuarioE(String usuario) {
+    return cu.getUsuario(usuario);
   }
 }

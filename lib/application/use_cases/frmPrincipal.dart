@@ -32,10 +32,6 @@ class FrmPrincipal extends StatelessWidget {
     final isDark = context.select<ThemeProvider, bool>((bloc) => bloc.isDark);
     final carritoListas = Provider.of<PrevListCarritoProvider>(context);
     List<DetUnitCompra> listado = carritoListas.listPreliminar;
-    final txtejenombre = TextEditingController();
-    final txtejeapellido = TextEditingController();
-    final txtejefecha = TextEditingController();
-    final txtejehora = TextEditingController();
 
     return Container(
       decoration: BoxDecoration(
@@ -47,11 +43,12 @@ class FrmPrincipal extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        drawer: DrawerPersonal(),
+        drawer: DrawerPersonal(persona: persona),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               title: Text("R - STORE"),
+              centerTitle: true,
               pinned: true,
               actions: [
                 IconButton(
@@ -86,53 +83,9 @@ class FrmPrincipal extends StatelessWidget {
                         },
                       ),
                       Text(persona.apellido),
-                      /*
-
                       SizedBox(
-                        height: 300,
-                      ),
-                      Text(
-                        "REGISTRO DE ASISTENCIA",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-
-                      
-                      TextFieldPersonal(
-                        validacion: null,
-                        controlador: txtejenombre,
-                        texto: "Nombre",
-                      ),
-                      TextFieldPersonal(
-                        validacion: null,
-                        controlador: txtejeapellido,
-                        texto: "Apellido",
-                      ),
-                      TextFieldPersonal(
-                        validacion: null,
-                        controlador: txtejefecha,
-                        texto: "Fecha",
-                      ),
-                      TextFieldPersonal(
-                        validacion: null,
-                        controlador: txtejehora,
-                        texto: "Hora",
-                      ),
-                      BotonRectangular(
-                        texto: "Registrar",
-                        ejecutar: () {
-                          eAsistencias ea = eAsistencias();
-                          ea.insertAsistenciaE(
-                              txtejenombre.text,
-                              txtejeapellido.text,
-                              txtejefecha.text,
-                              txtejehora.text);
-                        },
-                      ),
-                      SizedBox(
-                        height: 200,
-                      ),
-*/
+                        height: 150,
+                      )
                     ],
                   ),
                 ],
@@ -171,17 +124,6 @@ class FrmPrincipal extends StatelessWidget {
               Flexible(
                 child: InkWell(
                   onTap: () {
-                    /*print("XD");
-                    cComponentes cc = cComponentes();
-                    var path = await cc.getPathImage("IC00002.jpg");
-                    print(path);
-                    eCategorias ec = eCategorias();
-                    var ds = await ec.getCategoriaE("C00001");
-                    print(ds);
-                    eMarcas em = eMarcas();
-                    var dss = await em.getMarcasE("M00001");
-                    print(dss);*/
-
                     Navigator.push(
                         context,
                         MaterialPageRoute(

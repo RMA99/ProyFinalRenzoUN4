@@ -6,7 +6,6 @@ import 'package:proy_final_renzo/infrastructure/providers/theme.dart';
 import 'package:proy_final_renzo/application/use_cases/Portada.dart';
 import 'package:proy_final_renzo/infrastructure/controllers/cUsuarios.dart';
 import 'package:proy_final_renzo/infrastructure/entitymanager/eusuarios.dart';
-import 'package:proy_final_renzo/services/firebase_services.dart';
 import 'infrastructure/controllers/firebase_options.dart';
 
 void main() async {

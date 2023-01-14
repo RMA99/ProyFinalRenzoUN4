@@ -7,12 +7,14 @@ class DropDownPersonal extends StatefulWidget {
   String viewDefault;
   List<String> listado;
   void Function(String?)? onChange;
+  double w;
 
   DropDownPersonal({
     Key? key,
     required this.viewDefault,
     required this.listado,
     required this.onChange,
+    this.w = 300,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class _DropDownPersonalState extends State<DropDownPersonal> {
   Widget build(BuildContext context) {
     final isDark = context.select<ThemeProvider, bool>((bloc) => bloc.isDark);
     return Container(
-      width: 300,
+      width: widget.w,
       height: 60,
       margin: const EdgeInsets.only(top: 15, bottom: 15),
       padding: const EdgeInsets.only(top: 5, bottom: 5),

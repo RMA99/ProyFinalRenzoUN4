@@ -21,4 +21,44 @@ class eComponents {
     Componentes componente = await cc.getComponentbyCode(code);
     return componente;
   }
+
+  Future<void> actualizarE(
+      String codigo,
+      String cod_categoria,
+      String cod_marca,
+      String modelo,
+      String detalle,
+      String estado,
+      String imagen_path,
+      int stock,
+      double precio) async {
+    cComponentes cc = cComponentes();
+
+    await cc.actualizar(Componentes(codigo, cod_categoria, cod_marca, modelo,
+        detalle, estado, imagen_path, stock, precio));
+  }
+
+  Future<void> registrarE(
+      String codigo,
+      String cod_categoria,
+      String cod_marca,
+      String modelo,
+      String detalle,
+      String estado,
+      String imagen_path,
+      int stock,
+      double precio) async {
+    cComponentes cc = cComponentes();
+
+    await cc.registrar(Componentes(codigo, cod_categoria, cod_marca, modelo,
+        detalle, estado, imagen_path, stock, precio));
+  }
+
+  Future<void> eliminarE(
+    String codigo,
+  ) async {
+    cComponentes cc = cComponentes();
+
+    await cc.eliminar(codigo);
+  }
 }

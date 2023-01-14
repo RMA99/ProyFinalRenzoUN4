@@ -9,6 +9,7 @@ class TextFieldPersonal extends StatelessWidget {
   String? Function(String?)? validacion;
   TextEditingController? controlador;
   double w;
+  double h;
   TextFieldPersonal({
     Key? key,
     this.texto = "",
@@ -17,6 +18,7 @@ class TextFieldPersonal extends StatelessWidget {
     required this.validacion,
     required this.controlador,
     this.w = 300,
+    this.h = 70,
   }) : super(key: key);
 
   @override
@@ -26,8 +28,13 @@ class TextFieldPersonal extends StatelessWidget {
       alignment: Alignment.center,
       margin: const EdgeInsets.only(top: 15, bottom: 15),
       padding: const EdgeInsets.only(top: 5, bottom: 5),
+      height: h,
       width: w,
       child: TextFormField(
+        //keyboardType: TextInputType.multiline,
+        //expands: true,
+        minLines: 5,
+        maxLines: null,
         textAlignVertical: TextAlignVertical.center,
         controller: controlador,
         validator: validacion,

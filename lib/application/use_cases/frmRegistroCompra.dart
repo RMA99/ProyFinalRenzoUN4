@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:proy_final_renzo/application/use_cases/frmPrincipal.dart';
 import 'package:proy_final_renzo/application/widgets/DropDownPersonal.dart';
 import 'package:proy_final_renzo/application/widgets/TextField_Personal.dart';
+import 'package:proy_final_renzo/application/widgets/alertDialog.dart';
 import 'package:proy_final_renzo/domain/entities/personas.dart';
 import 'package:proy_final_renzo/infrastructure/controllers/cEncabezados.dart';
 import 'package:proy_final_renzo/infrastructure/entitymanager/eDetTotalCompra.dart';
 import 'package:proy_final_renzo/infrastructure/entitymanager/eEncabezado.dart';
 import 'package:proy_final_renzo/infrastructure/entitymanager/eTipoUsuario.dart';
+import 'package:proy_final_renzo/infrastructure/providers/prevListCarrito.dart';
 import 'package:proy_final_renzo/infrastructure/providers/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +32,7 @@ class _FrmRegistroCompraState extends State<FrmRegistroCompra> {
   @override
   Widget build(BuildContext context) {
     final isDark = context.select<ThemeProvider, bool>((bloc) => bloc.isDark);
+    final carritoListas = Provider.of<PrevListCarritoProvider>(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -50,32 +54,65 @@ class _FrmRegistroCompraState extends State<FrmRegistroCompra> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Column(
-                    children: [
-                      TextFieldPersonal(
-                        validacion: null,
-                        controlador: widget.txtDireccion,
-                        texto: "Dirección",
-                        tIcon: Icons.add_location,
-                      ),
-                      DropDownPersonal(
-                        viewDefault: widget.vista,
-                        listado: ["Efectivo", "Tarjeta Credito"],
-                        onChange: (valor) {
-                          setState(() {
-                            widget.vista = valor.toString();
-                          });
-                        },
-                      ),
-                      Text("Logrados !!"),
-                    ],
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Card(
+                    margin: EdgeInsets.symmetric(horizontal: 25),
+                    color: Color.fromARGB(207, 255, 255, 255),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 300,
+                          margin: EdgeInsets.all(10),
+                          child: Text(
+                            "Estimado(a) ${widget.persona.nombre} ya falta poco para completar su compra",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 325,
+                          margin: EdgeInsets.all(10),
+                          child: Text(
+                            "Por favor complete los siguientes datos:",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        TextFieldPersonal(
+                          validacion: null,
+                          controlador: widget.txtDireccion,
+                          texto: "Dirección",
+                          tIcon: Icons.add_location,
+                        ),
+                        DropDownPersonal(
+                          viewDefault: widget.vista,
+                          listado: ["Efectivo", "Tarjeta Credito"],
+                          onChange: (valor) {
+                            setState(() {
+                              widget.vista = valor.toString();
+                            });
+                          },
+                        ),
+                        Text("Logrados !!"),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
             var codeEncabezado = await insertarEnca_getCode(widget.vista);
             print(codeEncabezado);
@@ -84,8 +121,24 @@ class _FrmRegistroCompraState extends State<FrmRegistroCompra> {
 
             print(lis);
             print(widget.vista);
+
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FrmPrincipal(persona: widget.persona),
+                ));
+            carritoListas.listPreliminar = [];
+            carritoListas.items = 0;
+            carritoListas.isEmpty = true;
+            alertDialog_ok(
+                context, "Gracias por preferirnos", "Compra Exitosa");
           },
-          child: Icon(Icons.adb_outlined),
+          label: Row(
+            children: [
+              Text("Finalizar Compra "),
+              Icon(Icons.file_download_done_sharp),
+            ],
+          ),
         ),
       ),
     );

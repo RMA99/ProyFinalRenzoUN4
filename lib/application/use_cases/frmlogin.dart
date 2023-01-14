@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proy_final_renzo/application/use_cases/frmPrincipal.dart';
+import 'package:proy_final_renzo/application/use_cases/frmPrincipalAdmin.dart';
 import 'package:proy_final_renzo/application/use_cases/frmRegistro.dart';
 import 'package:proy_final_renzo/application/widgets/Boton_Rectangular.dart';
 import 'package:proy_final_renzo/application/widgets/Boton_Transparente.dart';
@@ -69,12 +70,18 @@ class FrmLogin extends StatelessWidget {
                           ejecutar: () async {
                             var isuser = await eu.isUserE(
                                 txtuser.text, txtpassword.text);
-                            //////////////////////
-                            /////////////////////////
-                            // isuser = true; // CORREGIR CAMBIO
-                            ////////////////////////////////////
-                            //////////////////////////////
-                            if (isuser) {
+                            if (isuser == "TU00001") {
+                              var persona = await getPersona();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      FrmPrincipalAdmin(persona: persona),
+                                ),
+                              );
+                            }
+
+                            if (isuser == "TU00002") {
                               var persona = await getPersona();
                               Navigator.push(
                                 context,
@@ -83,7 +90,9 @@ class FrmLogin extends StatelessWidget {
                                       FrmPrincipal(persona: persona),
                                 ),
                               );
-                            } else {
+                            }
+                            if ((isuser != "TU00002") &&
+                                (isuser != "TU00001")) {
                               toastMessage("Usuario y/o contraseña incorrecto",
                                   isDark, context);
                             }

@@ -60,7 +60,7 @@ class cUsuarios {
     }
   }
 
-  Future<bool> isUser(usuarios dato) async {
+  Future<String> isUser(usuarios dato) async {
     //List searchResult = [];
     FirebaseFirestore db = FirebaseFirestore.instance;
     final result = await db
@@ -68,15 +68,20 @@ class cUsuarios {
         .where("logeo", isEqualTo: dato.logeo)
         .get();
     if (result.docs.isEmpty) {
-      return false;
+      return "No existe";
     } else {
       var dbclave =
           result.docs.map((e) => e.data()).toList().first["clave"].toString();
+      var dbtipoUser = result.docs
+          .map((e) => e.data())
+          .toList()
+          .first["cod_tipo_usuario"]
+          .toString();
 
       if (dbclave == dato.clave) {
-        return true;
+        return dbtipoUser;
       } else {
-        return false;
+        return "Clave incorrecta";
       }
     }
   }
@@ -93,8 +98,24 @@ class cUsuarios {
         lista.docs.map((e) => e.data()).toList().first["codigo"].toString();
     return codeUser;
   }
-}
 
+  Future<usuarios> getUsuario(String usuario) async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    var lista = await db
+        .collection("usuarios")
+        .where("logeo", isEqualTo: usuario)
+        .get();
+
+    var mapa = lista.docs.map((e) => e.data()).toList().first;
+    String codigo = mapa["codigo"];
+    String cod_tipo_usuario = mapa["cod_tipo_usuario"];
+    String logeo = mapa["logeo"];
+    String clave = mapa["clave"];
+
+    return usuarios(codigo, cod_tipo_usuario, logeo, clave);
+  }
+}
+/*
 void search() async {
   List searchResult = [];
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -109,4 +130,4 @@ void search() async {
   //prueba["0"];
   print(asd);
   //print(searchReult[0]["nombre"]);
-}
+}*/

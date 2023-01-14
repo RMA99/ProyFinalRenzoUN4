@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proy_final_renzo/domain/entities/detUnitCompra.dart';
 import 'package:proy_final_renzo/infrastructure/providers/prevListCarrito.dart';
+import 'package:proy_final_renzo/infrastructure/providers/theme.dart';
 
 class CardComponent extends StatefulWidget {
   String titulo;
@@ -37,6 +38,7 @@ class _CardComponentState extends State<CardComponent> {
   @override
   Widget build(BuildContext context) {
     final carritoListas = Provider.of<PrevListCarritoProvider>(context);
+    final isDark = context.select<ThemeProvider, bool>((bloc) => bloc.isDark);
     List<DetUnitCompra> listado = carritoListas.listPreliminar;
     return Card(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -45,7 +47,9 @@ class _CardComponentState extends State<CardComponent> {
       ),
       shadowColor: Color.fromARGB(255, 82, 116, 131),
       elevation: 15,
-      color: Color.fromARGB(200, 255, 255, 255),
+      color: isDark
+          ? Color.fromARGB(199, 119, 118, 118)
+          : Color.fromARGB(200, 255, 255, 255),
       child: Container(
         alignment: Alignment.center,
         width: 370,

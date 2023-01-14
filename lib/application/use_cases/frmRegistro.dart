@@ -113,7 +113,7 @@ class _FrmRegistroState extends State<FrmRegistro> {
                           controlador: txtContrasena,
                           texto: "Contraseña",
                           tIcon: Icons.password,
-                          isVisible: false,
+                          //isVisible: false,
                         ),
                         SizedBox(height: 10),
                         BotonRectangular(
